@@ -38,7 +38,9 @@ class MainActivity : AppCompatActivity() {
 
         register_msg.setOnClickListener {
             register_msg.setTextColor(Color.parseColor("#1A78CC"))
+            var email = username.text.toString()
             var intent = Intent(this,RegistrationActivity::class.java)
+            intent.putExtra("email",email)
             startActivity(intent)
 //            finish()
         }

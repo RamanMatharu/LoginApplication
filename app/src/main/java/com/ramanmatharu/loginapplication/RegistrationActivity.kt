@@ -21,12 +21,15 @@ class RegistrationActivity : AppCompatActivity() {
     lateinit var male : RadioButton
     lateinit var female : RadioButton
     lateinit var other : RadioButton
-
     lateinit var registerBtn: Button
+    var emaill = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+        intent?.extras?.let{
+            emaill = it.getString("email","")
+        }
         //setting title
 
         supportActionBar?.title = "Registration"
@@ -65,7 +68,7 @@ class RegistrationActivity : AppCompatActivity() {
                 email.error="It is mandatory to enter email"
             }else if(passwd.text.toString().isEmpty()){
                 passwd.error="It is mandatory to secure your account"
-            }else if(passwd.text.toString().length<=6) {
+            }else if(passwd.text.toString().length<6) {
                 passwd.error = "Password must be of 6 characters"
             }else if(mobile.text.toString().length<10){
                 mobile.error="Mobile number must be of 10 digits"
