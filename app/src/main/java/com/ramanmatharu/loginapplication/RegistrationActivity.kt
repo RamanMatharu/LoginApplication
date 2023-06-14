@@ -12,12 +12,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class RegistrationActivity : AppCompatActivity() {
-    lateinit var sign_up : TextView
+    lateinit var signUp : TextView
     lateinit var email : EditText
     lateinit var passwd : EditText
     lateinit var mobile: EditText
-    lateinit var mention_here: EditText
-    lateinit var radiogrp : RadioGroup
+    lateinit var mentionHere: EditText
+    lateinit var radioGrp : RadioGroup
     lateinit var male : RadioButton
     lateinit var female : RadioButton
     lateinit var other : RadioButton
@@ -35,12 +35,12 @@ class RegistrationActivity : AppCompatActivity() {
         supportActionBar?.title = "Registration"
 
         //initialization
-        sign_up = findViewById(R.id.sign_up)
+        signUp = findViewById(R.id.signUp)
         email = findViewById(R.id.email)
         passwd = findViewById(R.id.passwd)
         mobile = findViewById(R.id.mobile)
-        radiogrp = findViewById(R.id.gender)
-        mention_here = findViewById(R.id.mention_here)
+        radioGrp = findViewById(R.id.gender)
+        mentionHere = findViewById(R.id.mentionHere)
         registerBtn = findViewById(R.id.registerBtn)
         female = findViewById(R.id.female)
         male = findViewById(R.id.male)
@@ -48,16 +48,16 @@ class RegistrationActivity : AppCompatActivity() {
 
 
 
-        sign_up.setOnClickListener {
+        signUp.setOnClickListener {
             var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
 
-        radiogrp.setOnCheckedChangeListener { group, checkedId ->
+        radioGrp.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
-                R.id.female -> mention_here.visibility = View.GONE
-                R.id.male -> mention_here.visibility= View.GONE
-                else -> mention_here.visibility = View.VISIBLE
+                R.id.female -> mentionHere.visibility = View.GONE
+                R.id.male -> mentionHere.visibility= View.GONE
+                else -> mentionHere.visibility = View.VISIBLE
             }
         }
 
@@ -70,11 +70,14 @@ class RegistrationActivity : AppCompatActivity() {
                 passwd.error="It is mandatory to secure your account"
             }else if(passwd.text.toString().length<6) {
                 passwd.error = "Password must be of 6 characters"
-            }else if(mobile.text.toString().length<10){
+            }else if(mobile.text.toString().length < 10){
                 mobile.error="Mobile number must be of 10 digits"
             }else if(mobile.text.toString().isEmpty()) {
                 mobile.error = "It is mandatory to provide mobile number"
-            }else{
+            }else if(radioGrp.checkedRadioButtonId == -1){
+                Toast.makeText(this,"It is mandatory to choose gender",Toast.LENGTH_SHORT).show()
+            }else
+            {
                 Toast.makeText(this,"Registration is successful!",Toast.LENGTH_LONG).show()
             }
         }

@@ -14,16 +14,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var username : EditText
     lateinit var password : EditText
     lateinit var login : Button
-    lateinit var register_msg : TextView
+    lateinit var registerMsg : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        username = findViewById(R.id.username)
+        username = findViewById(R.id.userName)
         password = findViewById(R.id.password)
         login = findViewById(R.id.login)
-        register_msg = findViewById(R.id.register_msg)
+        registerMsg = findViewById(R.id.registerMsg)
 
         //validation
         login.setOnClickListener {
@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        register_msg.setOnClickListener {
-            register_msg.setTextColor(Color.parseColor("#1A78CC"))
+        registerMsg.setOnClickListener {
+            registerMsg.setTextColor(Color.parseColor("#1A78CC"))
             var email = username.text.toString()
             var intent = Intent(this,RegistrationActivity::class.java)
             intent.putExtra("email",email)
